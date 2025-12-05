@@ -1,0 +1,53 @@
+name: Build and Publish
+
+on:
+    push:
+        branches: ["main", "master"]
+        tags: ["v*"]
+    pull_request:
+        branches: ["main"]
+    workflow_dispatch:
+
+jobs:
+    build:
+        name: Build All Platforms
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.0.x"
+
+            - name: Build via Makefile
+              run: make release
+
+            - name: Prepare Zips
+              run: |
+                  mkdir -p release_assets
+
+                  cd dist/tiny/linux && zip -r ../../../release_assets/OsuRealmMerger-Tiny-Linux.zip . && cd -
+                  cd dist/tiny/win && zip -r ../../../release_assets/OsuRealmMerger-Tiny-Windows.zip . && cd -
+                  cd dist/tiny/mac && zip -r ../../../release_assets/OsuRealmMerger-Tiny-macOS.zip . && cd -
+
+                  cd dist/big/linux && zip -r ../../../release_assets/OsuRealmMerger-Big-Linux.zip . && cd -
+                  cd dist/big/win && zip -r ../../../release_assets/OsuRealmMerger-Big-Windows.zip . && cd -
+                  cd dist/big/mac && zip -r ../../../release_assets/OsuRealmMerger-Big-macOS.zip . && cd -
+
+            - name: Upload Build Artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: OsuRealmMerger-Builds
+                  path: release_assets/*.zip
+                  retention-days: 5
+
+            - name: Create Release (Only on Tag)
+              uses: softprops/action-gh-release@v1
+              if: startsWith(github.ref, 'refs/tags/')
+              with:
+                  files: release_assets/*.zip
+                  draft: true
+                  prerelease: false
