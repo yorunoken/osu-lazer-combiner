@@ -1,0 +1,17 @@
+[Bb]in/
+[Oo]bj/
+dist/
+
+.vscode/
+.vs/
+*.user
+*.suo
+
+*.realm
+*.realm.lock
+*.realm.management/
+*.realm.note
+realms/
+
+.DS_Store
+Thumbs.db
