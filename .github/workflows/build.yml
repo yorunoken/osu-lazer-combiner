@@ -29,13 +29,13 @@ jobs:
               run: |
                   mkdir -p release_assets
 
-                  cd dist/tiny/linux && zip -r ../../../release_assets/OsuRealmMerger-Tiny-Linux.zip . && cd -
-                  cd dist/tiny/win && zip -r ../../../release_assets/OsuRealmMerger-Tiny-Windows.zip . && cd -
-                  cd dist/tiny/mac && zip -r ../../../release_assets/OsuRealmMerger-Tiny-macOS.zip . && cd -
+                  cd dist/tiny/linux && zip -r ../../../release_assets/Tiny-Linux.zip . && cd -
+                  cd dist/tiny/win && zip -r ../../../release_assets/Tiny-Windows.zip . && cd -
+                  cd dist/tiny/mac && zip -r ../../../release_assets/Tiny-macOS.zip . && cd -
 
-                  cd dist/big/linux && zip -r ../../../release_assets/OsuRealmMerger-Big-Linux.zip . && cd -
-                  cd dist/big/win && zip -r ../../../release_assets/OsuRealmMerger-Big-Windows.zip . && cd -
-                  cd dist/big/mac && zip -r ../../../release_assets/OsuRealmMerger-Big-macOS.zip . && cd -
+                  cd dist/big/linux && zip -r ../../../release_assets/Big-Linux.zip . && cd -
+                  cd dist/big/win && zip -r ../../../release_assets/Big-Windows.zip . && cd -
+                  cd dist/big/mac && zip -r ../../../release_assets/Big-macOS.zip . && cd -
 
             - name: Upload Build Artifacts
               uses: actions/upload-artifact@v4
