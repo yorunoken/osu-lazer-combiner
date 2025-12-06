@@ -21,7 +21,7 @@ Since there are no pre-compiled binaries, you will run the tool directly using t
 
     ```bash
     git clone https://github.com/yorunoken/osu-realm-combiner.git
-    cd osu-lazer-realm-combiner
+    cd osu-realm-combiner
     ```
 
 2.  **Run the merger:**
