@@ -20,7 +20,7 @@ Since there are no pre-compiled binaries, you will run the tool directly using t
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yorunoken/osu-lazer-realm-combiner.git
+    git clone https://github.com/yorunoken/osu-realm-combiner.git
     cd osu-lazer-realm-combiner
     ```
 
