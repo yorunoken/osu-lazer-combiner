@@ -1,7 +1,16 @@
 ﻿using Realms;
-using OsuRealmMerger.Models;
 using System.Collections;
 using System.Reflection;
+
+using osu.Game.Scoring;
+using osu.Game.Beatmaps;
+using osu.Game.Collections;
+using osu.Game.Skinning;
+using osu.Game.Rulesets.Mods;
+using osu.Game.Configuration;
+using osu.Game.Rulesets;
+using osu.Game.Models;
+using osu.Game.Input.Bindings;
 
 class Program
 {
@@ -65,13 +74,13 @@ class Program
                 Merge<RulesetInfo>(sourceRealm, targetRealm, objectCache);
 
                 Console.WriteLine("Merging RulesetSettings...");
-                Merge<RulesetSetting>(sourceRealm, targetRealm, objectCache);
+                Merge<RealmRulesetSetting>(sourceRealm, targetRealm, objectCache);
 
                 Console.WriteLine("Merging ModPreset...");
                 Merge<ModPreset>(sourceRealm, targetRealm, objectCache);
 
                 Console.WriteLine("Merging KeyBindings...");
-                Merge<KeyBindingInfo>(sourceRealm, targetRealm, objectCache);
+                Merge<RealmKeyBinding>(sourceRealm, targetRealm, objectCache);
 
                 Console.WriteLine("Merging Skins...");
                 Merge<SkinInfo>(sourceRealm, targetRealm, objectCache);
@@ -96,7 +105,7 @@ class Program
         }
     }
 
-    static void Merge<T>(Realm source, Realm target, Dictionary<RealmObjectBase, RealmObjectBase> cache) where T : RealmObject, new()
+    static void Merge<T>(Realm source, Realm target, Dictionary<RealmObjectBase, RealmObjectBase> cache) where T : RealmObject
     {
         var sourceObjects = source.All<T>().ToList();
         int addedCount = 0;
@@ -135,12 +144,12 @@ class Program
         return realm.Find<T>((dynamic)id);
     }
 
-    static T CloneObject<T>(T source, Realm targetRealm, Dictionary<RealmObjectBase, RealmObjectBase> cache) where T : RealmObjectBase, new()
+    static T CloneObject<T>(T source, Realm targetRealm, Dictionary<RealmObjectBase, RealmObjectBase> cache) where T : RealmObjectBase
     {
         if (cache.TryGetValue(source, out var existing))
             return (T)existing;
 
-        T clone = new();
+        T clone = (T)Activator.CreateInstance(typeof(T), nonPublic: true)!;
         cache[source] = clone;
 
         foreach (var prop in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance))
