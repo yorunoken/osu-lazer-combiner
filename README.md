@@ -14,7 +14,7 @@ This is useful if you have scores scattered across different machines (e.g., Des
 
 ## Installation
 
-Download the latest binary from the [Releases](https://github.com/yorunoken/osu-lazer-realm-combiner/releases) page.
+Download the latest binary from the [Releases](https://github.com/yorunoken/osu-realm-combiner/releases) page.
 
   * **Portable:** Self-contained, no dependencies.
   * **Tiny:** Requires [.NET 8 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0).
@@ -52,8 +52,8 @@ chmod +x OsuRealmMerger
 Requires .NET 8 SDK.
 
 ```bash
-git clone https://github.com/yorunoken/osu-lazer-realm-combiner.git
-cd osu-lazer-realm-combiner
+git clone https://github.com/yorunoken/osu-realm-combiner.git
+cd osu-realm-combiner
 
 dotnet build
 ```
