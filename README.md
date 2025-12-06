@@ -32,7 +32,6 @@ This is a command-line application.
 **Example (Windows Powershell):**
 
 ```powershell
-# Merge a laptop backup into your main profile
 ./OsuRealmMerger.exe -s "D:\Backup\client.realm" -o "C:\Users\You\AppData\Roaming\osu\client.realm"
 ```
 
@@ -46,7 +45,7 @@ chmod +x OsuRealmMerger
 ### Options
 
   * `-s`, `--source`: Path to the input database (the one you want to take data *from*). You can use this flag multiple times to merge several files at once.
-  * `-o`, `--output`: Path to the output database (the one you want to write data *to*).
+  * `-o`, `--output`: Path to the output database (the one you want to write data *to*). It is recommended you put the path of a file that *does not exist*
 
 ## Building from Source
 
@@ -56,7 +55,6 @@ Requires .NET 8 SDK.
 git clone https://github.com/yorunoken/osu-lazer-realm-combiner.git
 cd osu-lazer-realm-combiner
 
-# Build for current OS
 dotnet build
 ```
 
