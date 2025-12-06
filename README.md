@@ -48,7 +48,7 @@ Since there are no pre-compiled binaries, you will run the tool directly using t
 ### Options
 
 -   `-s`, `--source`: Path to the input database (the one you want to take data _from_). You can use this flag multiple times to merge several files at once.
--   `-o`, `--output`: Path to the output database (the one you want to write data _to_).
+-   `-o`, `--output`: Path to the output database (the one you want to write data _to_). Note: You should point this to a file that does not exist.
 
 ## License
 
